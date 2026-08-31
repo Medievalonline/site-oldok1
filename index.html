@@ -60,7 +60,7 @@
        ================================================================ */
     :root{--bg:#07111a;--side:#0b0d0e;--edge:#9b855d;--gold:#d8bd86;--text:#ede4d1;--muted:#b7a989}
     html,body{min-height:100%;height:auto}
-    body{overflow:auto;background:#07111a url('bg.jpg') center / cover fixed;color:var(--text)}
+    body{overflow:auto;background:#07111a url('image/banner-dragon.gif') center / cover fixed;color:var(--text)}
     body::before{content:'';position:fixed;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,15,24,.88),rgba(4,8,11,.44),rgba(5,15,24,.86)),linear-gradient(180deg,rgba(2,10,18,.48),rgba(2,5,7,.72));pointer-events:none}
     .app{width:min(1480px,calc(100% - 44px));height:calc(100dvh - 64px);min-height:680px;margin:32px auto;display:block;position:relative;overflow:hidden;background:#080b0d;border:8px solid rgba(15,16,15,.96);border-radius:21px;outline:2px solid var(--edge);outline-offset:-12px;box-shadow:0 25px 80px rgba(0,0,0,.68),0 0 0 1px rgba(236,213,160,.35)}
     .app::after{content:'';position:absolute;z-index:1;inset:11px;border:1px solid rgba(216,189,134,.28);border-radius:12px;pointer-events:none}
@@ -105,10 +105,11 @@
       aside{background:linear-gradient(180deg,rgba(9,12,13,.99),rgba(4,6,7,.99))}
     }
   </style>
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
   <div class="app">
-    <aside id="sidebar"><div class="brand"><a href="#home" class="brand-logo" aria-label="กลับหน้าหลัก"><img src="logo.png" alt="Medieval RP"></a><small>ROLEPLAY THAILAND</small></div><nav id="navigation"></nav></aside>
+    <aside id="sidebar"><div class="brand"><a href="#home" class="brand-logo" aria-label="กลับหน้าหลัก"><img src="image/logo.png" alt="Medieval RP"></a><small>ROLEPLAY THAILAND</small></div><nav id="navigation"></nav></aside>
     <main><div class="content" id="content"></div><div class="sponsor-bar" id="sponsorBar" aria-label="ผู้สนับสนุน"><div class="sponsor-inner"><div class="sponsor-heading">Partner</div><div class="sponsor-list" id="sponsorList"></div></div></div><button class="menu" id="menu" aria-label="เปิดเมนู">☰</button></main>
   </div>
   <script>
@@ -241,12 +242,12 @@ menuStructure.forEach(item=>{
 //         - ใส่ '#partner' เพื่อเด้งไปหน้า PARTNER ภายในเว็บนี้เอง (เปิดในแท็บเดิม)
 //         - ใส่ URL ภายนอกเต็มรูปแบบ (เช่น https://facebook.com/...) เพื่อเปิดเว็บอื่นในแท็บใหม่
 const sponsors = [
-  {image:'sponsor1.png', url:'https://www.facebook.com/kaigroomingofficial'},
-  {image:'sponsor2.png', url:'#partner'},
-  {image:'sponsor3.png', url:'#partner'},
-  {image:'sponsor4.png', url:'#partner'},
-  {image:'sponsor5.png', url:'#partner'},
-  {image:'sponsor6.png', url:'#partner'}
+  {image:'image/sponsor/sponsor1.png', url:'https://www.facebook.com/kaigroomingofficial'},
+  //{image:'image/sponsor/sponsor2.png', url:'#partner'},
+  //{image:'image/sponsor/sponsor3.png', url:'#partner'},
+  //{image:'image/sponsor/sponsor4.png', url:'#partner'},
+  //{image:'image/sponsor/sponsor5.png', url:'#partner'},
+  //{image:'image/sponsor/sponsor6.png', url:'#partner'}
 ];
 
 const sponsorList=document.getElementById('sponsorList');
@@ -355,5 +356,6 @@ window.addEventListener('hashchange',render);
 document.getElementById('menu').onclick=()=>document.body.classList.toggle('menu-open');
 render();
 </script>
+  <script src="image-lightbox.js" defer></script>
 </body>
 </html>
