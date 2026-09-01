@@ -3,87 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="image-lightbox.css">
 <title>Medieval Online TH - RULES</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap');
-:root{
-  --wood-dark:#241a10; --wood:#3a2814; --wood-light:#5a3f22;
-  --gold:#c9a35c; --gold-bright:#e8c983; --gold-dim:#8a6a3a;
-  --parchment:#e9d9b3; --parchment-dark:#d8c497;
-  --ink:#3b2b18; --ink-soft:#5a4630;
-  --red:#7a2020; --red-bright:#9c2c2c;
-  --shadow: 0 10px 30px rgba(0,0,0,.45);
-}
-*{box-sizing:border-box}
-body{margin:0}
-.mo-wrap{
-  font-family:'Noto Serif Thai', Georgia, serif;
-  font-size:18px; line-height:1.7; color:var(--ink);
-  background:
-    radial-gradient(900px 500px at 15% -20%, #2a1c0f 0%, transparent 60%),
-    linear-gradient(180deg, #1c130a, #14100a 100%);
-  padding:28px 14px 46px;
-  border-radius:12px;
-}
-.mo-wrap img{max-width:100%; display:block}
-.mo-wrap a{color:var(--red-bright); text-decoration:underline}
-.mo-wrap a:hover{color:var(--red)}
-.mo-page-title{
-  font-family:'Noto Serif Thai','Cinzel',serif;
-  color:var(--gold-bright);
-  font-size:clamp(1.5rem,3.4vw,2.2rem);
-  text-align:center; margin:0 0 22px;
-  text-shadow:0 2px 10px rgba(0,0,0,.6);
-}
-.mo-page-title small{
-  display:block; font-family:'Noto Serif Thai',serif; font-size:.58rem;
-  letter-spacing:.3em; color:var(--gold-dim); margin-top:8px; text-transform:uppercase;
-}
-.mo-hero{
-  border-radius:10px; overflow:hidden; margin:0 0 24px;
-  border:3px solid var(--wood-light); box-shadow:var(--shadow);
-  outline:1px solid var(--gold-dim); outline-offset:-6px;
-  max-width:900px; margin-left:auto; margin-right:auto;
-}
-.mo-frame{
-  max-width:900px; margin:0 auto;
-  background:linear-gradient(180deg, var(--parchment), var(--parchment-dark));
-  border-radius:10px; padding:2px; box-shadow:var(--shadow);
-  position:relative;
-}
-.mo-frame-inner{
-  border-radius:8px; border:3px solid var(--wood-light);
-  outline:1px solid var(--gold-dim); outline-offset:-7px;
-  padding:30px clamp(16px,4vw,44px); position:relative;
-}
-.mo-corner{position:absolute; width:24px; height:24px; border:2px solid var(--gold); opacity:.85}
-.mo-corner.tl{top:7px;left:7px;border-right:none;border-bottom:none}
-.mo-corner.tr{top:7px;right:7px;border-left:none;border-bottom:none}
-.mo-corner.bl{bottom:7px;left:7px;border-right:none;border-top:none}
-.mo-corner.br{bottom:7px;right:7px;border-left:none;border-top:none}
-.mo-body h1,.mo-body h2,.mo-body h3{
-  font-family:'Noto Serif Thai',serif; color:var(--red); letter-spacing:.02em;
-  margin:1.5em 0 .55em; border-bottom:2px solid var(--gold-dim); padding-bottom:.3em;
-}
-.mo-body h1{font-size:1.4rem}
-.mo-body h2{font-size:1.22rem}
-.mo-body h3{font-size:1.05rem}
-.mo-body p{margin:0 0 1.05em}
-.mo-body ul{margin:0 0 1.1em; padding-left:1.3em}
-.mo-body li{margin:0 0 .5em}
-.mo-body strong,.mo-body b{color:var(--red)}
-.mo-body img{
-  margin:1.3em auto; border-radius:6px;
-  border:3px solid var(--wood-light);
-  outline:1px solid var(--gold-dim); outline-offset:-6px;
-  box-shadow:var(--shadow);
-}
-.mo-body .forbid{color:var(--red); font-weight:600}
-.mo-body .mo-inline-img{max-width:600px; width:100%}
-@media (max-width:640px){
-  .mo-frame-inner{padding:20px 14px}
-}
-</style>
 </head>
 <body>
 <div class="mo-wrap">
@@ -117,7 +39,7 @@ body{margin:0}
 <li><span class="forbid">✕ ห้าม:</span> ใช้ความขัดแย้ง IC เป็นเหตุผลในการกลั่นแกล้งผู้เล่น OOC</li>
 </ul>
 
-<h2 style="text-align:center; border-bottom:none; padding-bottom:0;">"ตัวละครสามารถเกลียดกันได้ แต่ผู้เล่นไม่จำเป็นต้องเกลียดกัน"</h2>
+<h2>"ตัวละครสามารถเกลียดกันได้ แต่ผู้เล่นไม่จำเป็นต้องเกลียดกัน"</h2>
 
 <h2>General Conduct (กฎทั่วไปและการปฏิบัติตัว)</h2>
 <ul>
@@ -194,7 +116,7 @@ body{margin:0}
 <li><span class="forbid">✕ ห้าม:</span> การใช้ Customization เพื่อสร้างตัวละครที่มีลักษณ์เป็น Meme หรือ Parody ของบุคคลจริง ตัวละครจากสื่ออื่น หรือวัฒนธรรมสมัยใหม่</li>
 </ul>
 <img class="mo-inline-img" src="image/rules/customization.png" alt="Character Customization Rules">
-<p style="text-align:center; border-bottom:none; padding-bottom:0;">สีผมที่ได้รับอนุญาตให้ใช้ภายในเซิฟเวอร์</p>
+<p>สีผมที่ได้รับอนุญาตให้ใช้ภายในเซิฟเวอร์</p>
 
 <h2> Strict Prohibitions (กฎต้องห้าม)</h2>
 <p><strong>1. Metagaming</strong>
