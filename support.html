@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>support | Medieval Online TH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#14100c;
+    --wood:#2b2015;
+    --wood-2:#1c140d;
+    --wood-light:#3d2c1c;
+    --parchment:#e8d9b3;
+    --parchment-ink:#3a2c1a;
+    --gold:#b8892b;
+    --gold-light:#e0be6f;
+    --gold-dim:#8a6520;
+    --gem:#7a1f1f;
+    --gem-light:#d24b4b;
+    --cream:#f0e4c6;
+    --dim:#c2ac82;
+    --discord:#5865F2;
+    --discord-hover:#4752c4;
+    --radius: 4px;
+    --display: 'Noto Serif Thai', serif;
+    --display-deco: 'Noto Serif Thai', serif;
+    --body: 'Noto Serif Thai', serif;
+    --mono: 'Space Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(900px 500px at 15% -10%, #2a1c0f 0%, transparent 60%),
+      linear-gradient(180deg, #1c130a, #14100a 100%);
+    color: var(--cream);
+    font-family: var(--body);
+    min-height:100vh;
+    padding: 40px 16px 60px;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- header ---------- */
+  .page-head{ max-width: 760px; margin: 0 auto 26px; text-align:center; }
+  .page-head h1{
+    font-family: var(--display-deco); color: var(--gold-light); text-transform:uppercase;
+    letter-spacing:.08em; font-size: 1.7rem; margin: 0 0 6px; text-shadow: 0 2px 10px rgba(0,0,0,.6);
+  }
+  .page-head small{ display:block; font-family: var(--display); font-size:.6rem; letter-spacing:.2em; color: var(--dim); text-transform:uppercase; }
+
+  .info-box{
+    max-width: 680px; margin: 20px auto 0; padding: 18px 22px;
+    background: linear-gradient(180deg, var(--parchment), #d8c497);
+    color: var(--parchment-ink);
+    border: 3px double #8a6732; border-radius: 4px;
+    text-align:left; font-size:.82rem; line-height:1.75;
+    box-shadow: 0 8px 25px rgba(0,0,0,.4);
+  }
+  .info-box h2{ margin:0 0 8px; font-size:1rem; color: var(--gem); font-family: var(--display); }
+  .info-box p{ margin:0 0 14px; }
+  .info-box p:last-of-type{ margin-bottom:0; }
+  .info-box h3{ margin: 18px 0 6px; font-size:.88rem; color:#5a3d18; font-family: var(--display); }
+  .discord-btn{
+    display:flex; align-items:center; gap:10px; margin-top:14px;
+    width:max-content; margin-left:auto; margin-right:auto;
+    padding:9px 16px; background: var(--discord); color:#fff; border-radius:6px;
+    font-family: var(--display); font-weight:700; font-size:.72rem; letter-spacing:.03em;
+    border: 2px solid var(--gold-dim); box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    transition: background .2s ease, transform .15s ease;
+  }
+  .discord-btn:hover{ background: var(--discord-hover); transform: translateY(-2px); }
+  .discord-btn svg{ width:16px; height:16px; flex-shrink:0; }
+
+  .section-title{
+    font-family: var(--display); color: var(--gold-light); text-align:center;
+    font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; margin: 34px 0 18px;
+  }
+
+  /* ---------- grid ---------- */
+  .grid{
+    max-width: 1040px; margin: 0 auto;
+    display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 26px;
+  }
+  @media (max-width: 860px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; } }
+  @media (max-width: 520px){ .grid{ grid-template-columns: 1fr; max-width: 340px; } }
+
+  /* ---------- gem corners ---------- */
+  .gem{
+    position:absolute;width:13px;height:13px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gem-light), var(--gem) 65%, #2e0d0d 100%);
+    border:1px solid var(--gold);
+    box-shadow:0 0 5px rgba(210,75,75,.55);
+    z-index:3;
+  }
+  .gem.tl{top:-6px;left:-6px;} .gem.tr{top:-6px;right:-6px;}
+  .gem.bl{bottom:-6px;left:-6px;} .gem.br{bottom:-6px;right:-6px;}
+
+  /* ---------- ticket card ---------- */
+  .ticket{
+    position: relative; width:100%;
+    background: linear-gradient(180deg, var(--wood), var(--wood-2));
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius);
+    overflow: visible;
+    box-shadow: 0 10px 26px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+    transition: transform .2s ease, box-shadow .2s ease, filter .25s ease;
+  }
+  .ticket:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,.6), 0 0 0 1px rgba(184,137,43,.3), 0 0 18px rgba(224,190,111,.25);
+    border-color: var(--gold-light);
+  }
+  .ticket.coming-soon{ filter: grayscale(0.92) contrast(0.88) brightness(0.8); }
+  .ticket.coming-soon:hover{
+    transform: translateY(-4px);
+    filter: grayscale(0.8) contrast(0.92) brightness(0.88);
+    box-shadow: 0 12px 26px rgba(0,0,0,.5);
+    border-color: var(--gold-dim);
+  }
+  .ticket.coming-soon .gem{
+    background: radial-gradient(circle at 35% 30%, #cfcfcf, #6b6b6b 65%, #1c1c1c 100%);
+    border-color:#8a8a8a;
+    box-shadow:0 0 5px rgba(120,120,120,.4);
+  }
+  .ticket.coming-soon .btn-buy{ filter: grayscale(1); opacity:.45; pointer-events:none; cursor:not-allowed; }
+
+  /* Image area: all images are clipped inside this frame on every screen size. */
+  .ticket-media{
+    position:relative; isolation:isolate; width:100%; min-width:0;
+    aspect-ratio:4 / 3; overflow:hidden; box-sizing:border-box;
+    background:var(--wood-2); border-bottom:1px solid var(--gold-dim);
+    padding:8px;
+  }
+  .ticket-media-inner{
+    position:relative; width:100%; height:100%; min-width:0; min-height:0;
+    overflow:hidden; box-sizing:border-box; border:1px solid var(--gold-dim);
+    background:#0b0d0e;
+  }
+  .ticket-media img{
+    display:block; width:100%!important; height:100%!important;
+    min-width:0; max-width:100%; min-height:0; max-height:100%;
+    object-fit:contain; object-position:center; filter:saturate(1.05) contrast(1.03);
+  }
+  .ticket.coming-soon .ticket-media img{ filter: saturate(0) contrast(1) brightness(0.95); }
+
+  .status-pill{
+    position:absolute; top:14px; left:14px; z-index:2;
+    font-family: var(--display); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.35);
+    box-shadow: 0 2px 6px rgba(0,0,0,.4);
+  }
+
+  .tear{ position: relative; height: 0; border-top: 1px dashed var(--gold-dim); margin: 0 20px; }
+  .tear::before, .tear::after{
+    content:""; position:absolute; top:-7px; width:14px; height:14px;
+    border-radius:50%; background: var(--stone);
+    box-shadow: 0 0 0 1px var(--gold-dim) inset;
+  }
+  .tear::before{ left: -29px; } .tear::after{ right: -29px; }
+
+  .ticket-body{ padding: 18px 20px 20px; display:flex; flex-direction:column; gap:6px; position:relative; }
+  .ticket-body::before{ content:""; position:absolute; inset:6px 8px; border:1px solid rgba(184,137,43,.15); pointer-events:none; }
+
+  .team-row{ display:flex; align-items:center; gap:10px; }
+  .team-badge{
+    width:26px; height:26px; border-radius:50%; flex:none;
+    background: radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold-dim) 70%);
+    color: #241a0f; border: 2px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--display); font-size:12px; font-weight:700;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.35);
+  }
+  .team-name{ font-family: var(--display); font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 1.5px; }
+  .ticket-title{
+    font-family: var(--display-deco); font-size: 19px; font-weight:700;
+    text-transform: uppercase; margin: 3px 0 4px; letter-spacing: 0.3px;
+    color: var(--gold-light); text-shadow: 0 2px 0 rgba(0,0,0,.4);
+  }
+  .price-row{ display:flex; align-items: baseline; justify-content: space-between; margin-top: 2px; }
+  .price{ font-family: var(--mono); font-size: 19px; font-weight:700; color: var(--gold-light); }
+  .price .cur{ color: var(--dim); font-size: 13px; margin-right:2px; }
+
+  .btn-row{ display:flex; gap:8px; margin-top: 14px; }
+  .btn-buy{
+    position:relative; flex:1.3; display:flex; align-items:center; justify-content:center; gap:6px; height:38px;
+    background: linear-gradient(180deg, #6b4a26, #452c16 55%, #38220f);
+    border: 1px solid var(--gold-dim);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+    color: var(--cream);
+    font-family: var(--display); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    cursor:pointer; transition: filter .15s ease;
+  }
+  .btn-buy:hover{ filter: brightness(1.25); }
+  .btn-buy:active{ filter: brightness(0.95); }
+  .btn-outline{
+    flex:1; background: transparent; color: var(--dim);
+    border: 1px solid var(--gold-dim); border-radius: var(--radius);
+    font-family: var(--body); font-weight:600; font-size: 12px;
+    padding: 9px 8px; cursor:pointer; transition: background .15s ease, color .15s ease;
+  }
+  .btn-outline:hover{ background: rgba(184,137,43,.12); color: var(--gold-light); }
+
+  /* ---------- details modal ---------- */
+  .overlay{ position: fixed; inset:0; background: rgba(10,8,5,0.7); display:none; align-items:center; justify-content:center; z-index: 50; padding: 20px; }
+  .overlay.open{ display:flex; }
+  .modal-frame{
+    position:relative; width: 100%; max-width: 380px;
+    background: linear-gradient(180deg, var(--wood), var(--wood-2));
+    border: 1px solid var(--gold-dim); padding: 8px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.6);
+  }
+  .modal{ position:relative; border: 1px solid var(--gold-dim); padding: 24px; max-height: 80vh; overflow:auto; }
+  .modal-eyebrow{ font-family: var(--display); font-size:10.5px; letter-spacing:1.5px; color: var(--dim); text-transform:uppercase; }
+  .modal h2{ font-family: var(--display-deco); text-transform: uppercase; margin:8px 0 14px; font-size:22px; color: var(--gold-light); }
+  .modal .price{ display:block; margin: 6px 0 18px; }
+  .modal p.desc{ color: var(--dim); font-size: 13px; line-height:1.75; margin: 0 0 20px; }
+  .modal .btn-outline{ width:100%; }
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<header class="page-head">
+  <h1>SUPPORTER</h1>
+  <small>Medieval Online RP &middot; Thailand</small>
+  <div class="info-box">
+	<h1 style="text-align:center; border-bottom:none; padding-bottom:0;">Medieval Online Thai</h1>
+    <p>คือ ประสบการณ์การเล่นสวมบทบาท (Roleplay) ในธีมยุคกลางสำหรับ RedM ที่ปรับแต่งมาเพื่อผู้เล่นชาวไทยโดยเฉพาะ การสนับสนุนและชุมชนผู้เล่น นโยบายการสั่งซื้อ เนื่องจากสินค้าเป็นรูปแบบดิจิทัล การซื้อขายถือเป็นที่สิ้นสุดและไม่สามารถขอคืนเงินได้ หากมีการทำเรื่องปฏิเสธการชำระเงิน (Chargeback) ทางเราขอสงวนสิทธิ์ในการระงับบัญชีของคุณออกจากชุมชน รายได้ทั้งหมดจะถูกนำกลับมาพัฒนาเซิร์ฟเวอร์ ไม่ว่าจะเป็นค่าสคริปต์ ค่าจ้างนักพัฒนา การปรับปรุงระบบอย่างต่อเนื่อง และการสนับสนุนทีม</p>
+    <p>หากมีคำถามหรือปัญหาการใช้งาน สามารถติดต่อผ่านช่องทาง Main Chat หรือ Help & Advice ใน Discord</p>
+    <a class="discord-btn" href="https://discord.gg/BXHrfDTGvV" target="_blank" rel="noopener">
+      <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+      เข้าร่วม Discord
+    </a>
+  </div>
+</header>
+</body>
+</html>
