@@ -125,6 +125,36 @@ body{margin:0}
   font-weight:700;
   border-bottom:1px solid var(--gold-dim);
 }
+.rules-search-container{
+  margin:0 0 10px;
+  padding:0 10px;
+  position:relative;
+}
+.rules-search-input{
+  width:100%;
+  padding:6px 8px;
+  font-size:.80rem;
+  font-family:inherit;
+  border:1px solid var(--gold-dim);
+  border-radius:3px;
+  background:rgba(201,163,92,.08);
+  color:var(--gold);
+  transition:background .2s,border-color .2s;
+}
+.rules-search-input:focus{
+  outline:none;
+  background:rgba(201,163,92,.15);
+  border-color:var(--gold-bright);
+  color:var(--gold-bright);
+}
+.rules-search-input::placeholder{
+  color:var(--gold-dim);
+}
+.rules-toc-list a.search-highlight{
+  background:rgba(201,163,92,.2);
+  border-left-color:var(--gold-bright);
+  color:var(--gold-bright);
+}
 .rules-toc-list{
   display:flex;
   flex-direction:column;
@@ -182,7 +212,15 @@ body{margin:0}
   <div class="mo-hero"><img src="https://lh3.googleusercontent.com/sitesv/AG8ngQXskre12INnmQRrpLmKCCHKnuUNAyJZLAYC5SGy-SZzYmtcjo1Ig-9NBcEPY3tRmFvakzl3hgmYzqSXrBFdjjHh0fEqGJBwn0-ASFlZvBQaSmZpniWTuPsyIvROIiySExwDfD4aCXLILSgDyKLuA5m_XPeVpfy8T3WSpoe0WjwH_J7ilBdUBUAAb2Nka-XPTKhMvuSowI2yQRb1WHYhZUvDOgrWI-p7PYklftBV=w1280" alt=""></div>
   <div class="rules-layout">
     <aside class="rules-toc" aria-label="สารบัญกฎ">
-      <h2 class="rules-toc-title">สารบัญ Rules</h2>
+      <div class="rules-search-container">
+        <input 
+          type="text" 
+          id="rules-search-input" 
+          class="rules-search-input" 
+          placeholder="ค้นหากฎ..."
+          autocomplete="off"
+        >
+      </div>
       <nav aria-label="หัวข้อในหน้า Rules">
         <ol id="rules-toc-list" class="rules-toc-list"></ol>
       </nav>
@@ -826,6 +864,64 @@ CK สามารถใช้เพื่อปิดฉากเรื่อ�
         threshold: 0
       });
       headings.forEach((heading) => observer.observe(heading));
+    }
+
+    // ===== Search/Filter Functionality =====
+    const searchInput = document.getElementById('rules-search-input');
+    const tocItems = [...tocList.querySelectorAll('li')];
+
+    if (searchInput) {
+      // Normalize text for searching (support Thai and English)
+      const normalizeText = (text) => {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[\u0E48-\u0E4B]/g, ''); // Remove Thai diacritical marks
+      };
+
+      // Check if text matches the search query
+      const matchesSearch = (text, query) => {
+        const normalized = normalizeText(text);
+        const normalizedQuery = normalizeText(query);
+        
+        // Exact word match or substring match
+        return normalized.includes(normalizedQuery);
+      };
+
+      // Filter function
+      const filterToc = () => {
+        const query = searchInput.value;
+        
+        if (!query) {
+          // Show all items if search is empty
+          tocItems.forEach((item) => {
+            item.style.display = '';
+            const link = item.querySelector('a');
+            if (link) link.classList.remove('search-highlight');
+          });
+          return;
+        }
+
+        tocItems.forEach((item) => {
+          const link = item.querySelector('a');
+          if (!link) return;
+          
+          const text = link.textContent;
+          const matches = matchesSearch(text, query);
+          
+          item.style.display = matches ? '' : 'none';
+          link.classList.toggle('search-highlight', matches);
+        });
+      };
+
+      // Add event listeners for real-time filtering
+      searchInput.addEventListener('input', filterToc);
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          filterToc();
+        }
+      });
     }
 
     const requestedId = window.location.hash.slice(1);
