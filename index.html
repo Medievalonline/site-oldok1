@@ -104,41 +104,6 @@
       .app::after{display:none}
       aside{background:linear-gradient(180deg,rgba(9,12,13,.99),rgba(4,6,7,.99))}
     }
-
-    /* Desktop reading mode: keep the page wide, reveal the full menu on hover. */
-    @media(min-width:761px){
-      .app{grid-template-columns:72px minmax(0,1fr);transition:grid-template-columns .24s ease}
-      .app:has(#sidebar:hover),.app:has(#sidebar:focus-within){grid-template-columns:260px minmax(0,1fr)}
-
-      aside{padding:24px 10px;overflow-x:hidden;transition:padding .24s ease,box-shadow .24s ease}
-      .brand{padding:0 0 15px;transition:padding .24s ease}
-      .brand-logo{justify-content:center}
-      .brand-logo img{width:44px;height:44px;max-width:none;object-fit:cover;object-position:center;margin:0 auto;transition:width .24s ease,height .24s ease,object-fit .24s ease,margin .24s ease}
-      nav{align-items:center;padding-right:0;transition:align-items .24s ease}
-      .nav-link{width:44px;height:42px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;border-left:0;text-align:center;font-size:0;letter-spacing:0;white-space:nowrap;transition:width .24s ease,height .24s ease,padding .24s ease,font-size .24s ease,color .18s ease,background .18s ease}
-      .nav-link::before{content:'✦';display:block;color:var(--gold);font:500 1rem Cinzel,'Noto Serif Thai',serif;line-height:1}
-      .nav-link::after{left:50%;bottom:4px;transform:translateX(-50%);width:0}
-      .nav-group{width:44px;transition:width .24s ease}
-      .nav-group-head{justify-content:center}
-      .nav-group-head .nav-link{width:44px;flex:0 0 44px}
-      .nav-toggle{display:none}
-      .sub-pages{max-height:0!important;opacity:0;visibility:hidden;pointer-events:none;padding:0!important;margin:0!important;border:0!important;transition:max-height .22s ease,opacity .18s ease,visibility 0s linear .22s}
-
-      .app:has(#sidebar:hover) aside,.app:has(#sidebar:focus-within) aside{padding:30px 15px 24px;box-shadow:8px 0 25px rgba(0,0,0,.34)}
-      .app:has(#sidebar:hover) .brand,.app:has(#sidebar:focus-within) .brand{padding:0 8px 20px}
-      .app:has(#sidebar:hover) .brand-logo img,.app:has(#sidebar:focus-within) .brand-logo img{width:100%;height:auto;max-width:100%;object-fit:contain;margin:0}
-      .app:has(#sidebar:hover) nav,.app:has(#sidebar:focus-within) nav{align-items:stretch;padding-right:2px}
-      .app:has(#sidebar:hover) .nav-link,.app:has(#sidebar:focus-within) .nav-link{width:100%;height:auto;display:block;overflow:visible;padding:12px 13px;border-left:0;text-align:left;font-size:.72rem;letter-spacing:.08em;white-space:normal;line-height:1.4}
-      .app:has(#sidebar:hover) .nav-link::before,.app:has(#sidebar:focus-within) .nav-link::before{display:none}
-      .app:has(#sidebar:hover) .nav-link::after,.app:has(#sidebar:focus-within) .nav-link::after{left:0;bottom:0;transform:none}
-      .app:has(#sidebar:hover) .nav-group,.app:has(#sidebar:focus-within) .nav-group{width:100%}
-      .app:has(#sidebar:hover) .nav-group-head,.app:has(#sidebar:focus-within) .nav-group-head{justify-content:initial}
-      .app:has(#sidebar:hover) .nav-group-head .nav-link,.app:has(#sidebar:focus-within) .nav-group-head .nav-link{width:100%;flex:1}
-      .app:has(#sidebar:hover) .nav-toggle,.app:has(#sidebar:focus-within) .nav-toggle{display:flex;width:32px}
-      .app:has(#sidebar:hover) .nav-group:not(.collapsed) .sub-pages,.app:has(#sidebar:focus-within) .nav-group:not(.collapsed) .sub-pages{max-height:160px!important;opacity:1;visibility:visible;pointer-events:auto;padding:2px 0 2px 14px!important;margin-top:2px;border-left:1px solid rgba(216,189,134,.22)!important;transition:max-height .22s ease,opacity .18s ease,visibility 0s linear 0s}
-
-      @media(prefers-reduced-motion:reduce){.app,.app *{transition-duration:0s!important}}
-    }
   </style>
 </head>
 <body>
@@ -204,7 +169,6 @@ const makeLink=(page)=>{
   b.className='nav-link';
   b.dataset.id=page.id;
   b.textContent=page.label;
-  b.title=page.label;
   b.onclick=()=>location.hash=page.id;
   return b;
 };
