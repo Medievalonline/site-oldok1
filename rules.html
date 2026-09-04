@@ -829,8 +829,15 @@ CK สามารถใช้เพื่อปิดฉากเรื่อ�
 
       link.addEventListener('click', (event) => {
         event.preventDefault();
+        navigatingTo = heading.id;
+        window.clearTimeout(navigationTimer);
+        // Keep the selected item highlighted while smooth scrolling is in progress.
+        setActive(heading.id);
         heading.scrollIntoView({behavior: 'smooth', block: 'start'});
         history.replaceState(null, '', `#${heading.id}`);
+        navigationTimer = window.setTimeout(() => {
+          navigatingTo = null;
+        }, 2000);
       });
 
       item.appendChild(link);
@@ -841,6 +848,8 @@ CK สามารถใช้เพื่อปิดฉากเรื่อ�
     const linkById = new Map(
       tocLinks.map((link) => [link.getAttribute('href').slice(1), link])
     );
+    let navigatingTo = null;
+    let navigationTimer = null;
 
     const setActive = (id) => {
       tocLinks.forEach((link) => {
@@ -857,6 +866,16 @@ CK สามารถใช้เพื่อปิดฉากเรื่อ�
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        // Ignore intermediate headings crossed by a smooth jump. Otherwise the
+        // TOC follows each heading one by one instead of going to the destination.
+        if (navigatingTo) {
+          const destinationVisible = visible.some(
+            (entry) => entry.target.id === navigatingTo
+          );
+          if (!destinationVisible) return;
+          window.clearTimeout(navigationTimer);
+          navigatingTo = null;
+        }
         if (visible[0]) setActive(visible[0].target.id);
       }, {
         root: null,
